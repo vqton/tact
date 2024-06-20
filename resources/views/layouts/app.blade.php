@@ -76,5 +76,10 @@
             @yield('content')
         </main>
     </div>
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <p>&copy; 2024 AccountingApp. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
