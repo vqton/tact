@@ -21,19 +21,34 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
 
         .hero {
-            background: url('https://via.placeholder.com/1920x600') no-repeat center center;
+            background: url({{ asset('images/hero_page2.jpg') }}) no-repeat center center;
             background-size: cover;
             color: white;
             text-align: center;
             padding: 150px 0;
+            position: relative;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Add a subtle overlay */
         }
 
         .hero h1 {
             font-size: 3rem;
             font-weight: bold;
+            margin-bottom: 20px;
         }
 
         .hero p {
@@ -41,28 +56,20 @@
             margin-bottom: 30px;
         }
 
-        .feature-icon {
-            font-size: 2rem;
-        }
-
-        .features,
-        .pricing,
-        .testimonials,
-        .contact {
-            padding: 60px 0;
-        }
-
-        .features {
-            background-color: #f9f9f9;
-        }
+        /* Other sections (features, pricing, etc.) go here */
 
         .testimonials {
             background-color: #f1f1f1;
+            padding: 60px 0;
         }
 
+        /* Add styling for testimonials as discussed earlier */
+
         .footer {
-            background-color: #343a40;
-            color: white;
+            background-color: #f9f9f9;
+            color: #343a40;
+            text-align: center;
+            padding: 20px 0;
         }
 
         .footer p {
@@ -72,12 +79,13 @@
 </head>
 
 <body>
-    
-         <!-- Navbar -->
+
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="#">AccountingWebApp</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="#">{{ config('app.name', 'Laravel') }}</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -87,25 +95,28 @@
                     <li class="nav-item"><a class="nav-link" href="#pricing">Pricing</a></li>
                     <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#signupModal">Sign Up</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal"
+                            data-bs-target="#loginModal">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal"
+                            data-bs-target="#signupModal">Sign Up</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
-    
-    
-     <!-- Footer -->
-     <footer class="footer py-4 text-center">
+    <main class="py-4">
+        @yield('content')
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer py-4 text-center">
         <div class="container">
-            <p>&copy; 2024 AccountingWebApp. All Rights Reserved.</p>
+            <p>&copy; 2024 {{ config('app.name', 'Laravel') }}. All Rights Reserved.</p>
         </div>
     </footer>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
 </html>

@@ -1,0 +1,6 @@
+<svg width="350" height="200" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="350" height="200" fill="#198754" />
+     <text x="50%" y="30%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="24">Basic Plan</text>
+    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="36">$ 300</text>
+    <text x="50%" y="65%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="14">per year</text>
+</svg>
