@@ -91,10 +91,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="{{ route('landingpage') }}#features">Features</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#how-it-works">How It Works</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#pricing">Pricing</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('landingpage') }}#how-it-works">How It Works</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('landingpage') }}#pricing">Pricing</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('landingpage') }}#testimonials">Testimonials</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('landingpage') }}#contact">Contact</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Sign Up</a></li>
                 </ul>
