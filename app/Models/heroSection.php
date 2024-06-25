@@ -10,6 +10,7 @@ class heroSection extends Model
     use HasFactory;
     protected $table = 'ld_hero';
 
+
     public const CREATED_AT = 'creation_date';
     public const UPDATED_AT = 'updated_date';
 }
