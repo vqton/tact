@@ -72,7 +72,7 @@
                     <div class="card bg-success text-white">
                         <img src="{{ asset('images/basic.svg') }}" class="card-img-top" alt="Basic Plan">
 
-                       <div class="card-body">
+                        <div class="card-body">
                             {{-- <h5 class="card-title">Basic Plan</h5>
                             <h6 class="card-subtitle mb-2 text-muted">$9.99/month</h6> --}}
                             <ul class="list-unstyled">
@@ -89,10 +89,10 @@
                 <div class="col-lg-4 mb-4">
                     <div class="card">
                         <img src="{{ asset('images/standard.svg') }}" class="card-img-top"alt="Standard Plan">
-                        <div class="card-body bg-warning text-white">
+                        <div class="card-body bg-warning text-white text-left">
                             {{-- <h5 class="card-title">Standard Plan</h5>
                             <h6 class="card-subtitle mb-2 text-muted">$19.99/month</h6> --}}
-                            <ul class="list-unstyled">
+                            <ul class="list-unstyled text-left">
                                 <li>Expanded Services</li>
                                 <li>Payroll</li>
                                 <li>Advanced Reporting</li>
@@ -105,7 +105,7 @@
                 </div>
                 <div class="col-lg-4 mb-4">
                     <div class="card">
-                        <img  src="{{ asset('images/premium.svg') }}" class="card-img-top" alt="Premium Plan">
+                        <img src="{{ asset('images/premium.svg') }}" class="card-img-top" alt="Premium Plan">
                         <div class="card-body bg-danger text-white">
                             {{-- <h5 class="card-title">Premium Plan</h5>
                             <h6 class="card-subtitle mb-2 text-muted">$29.99/month</h6> --}}
