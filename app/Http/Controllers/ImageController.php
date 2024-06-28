@@ -51,7 +51,7 @@ class ImageController extends Controller
             ->with('success', 'Image Upload successful')
             ->with('imageName', $imageName);
     }*/
-    public function store(Request $request)
+    public function store(Request $request)         
     {
         $this->validate($request, [
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
