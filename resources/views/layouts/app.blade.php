@@ -83,20 +83,40 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="{{route('landingpage')}}">{{ config('app.name', 'Laravel') }}</a>
+            <a class="navbar-brand" href="{{ route('landingpage') }}">{{ config('app.name', 'Laravel') }}</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="{{ route('landingpage') }}#features">Features</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('landingpage') }}#how-it-works">How It Works</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('landingpage') }}#features">Features</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('landingpage') }}#how-it-works">How It
+                            Works</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('landingpage') }}#pricing">Pricing</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('landingpage') }}#testimonials">Testimonials</a></li>
+                    <li class="nav-item"><a class="nav-link"
+                            href="{{ route('landingpage') }}#testimonials">Testimonials</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('landingpage') }}#contact">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Sign Up</a></li>
+                    @guest
+                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Sign Up</a></li>
+                    @else
+                        <li class="nav-item">
+                            <img src="{{ Auth::user()->avatar }}" alt="User Avatar" class="rounded-circle" width="40"
+                                height="40">
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">{{ Auth::user()->name }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </li>
+                    @endguest
                 </ul>
             </div>
         </div>
