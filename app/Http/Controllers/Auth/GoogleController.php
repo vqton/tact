@@ -34,9 +34,10 @@ class GoogleController extends Controller
                 $user->update([
                     'google_id' => $googleUser->getId(),
                     // 'avatar' => $user->avatar ?: $googleUser->getAvatar(),
-                    'avatar' => empty($user->avatar) ? $googleUser->getAvatar(get_the_author_meta($user)) : $user->avatar,
-                    dd($googleUser->getAvatar(get_the_author_meta( $googleUser->getEmail()));
+                    'avatar' => empty($user->avatar) ? $googleUser->getAvatar() : $user->avatar,
+
                 ]);
+
             } else {
                 // Create a new user
                 $user = User::create([
@@ -56,6 +57,10 @@ class GoogleController extends Controller
             return redirect('/login/google');
         }
     }
-
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/'); // Redirect to homepage or login page
+    }
 
 }

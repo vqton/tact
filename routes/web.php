@@ -21,3 +21,4 @@ Route::post('image-upload', [ImageController::class, 'store'])->name('image.stor
 // GoogleLoginController redirect and callback urls
 Route::get('login/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('login/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+Route::get('logout', [GoogleController::class, 'logout'])->name('logout');
