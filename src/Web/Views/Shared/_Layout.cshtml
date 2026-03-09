@@ -1,4 +1,4 @@
-@using Microsoft.AspNetCore.Identity
+﻿@using Microsoft.AspNetCore.Identity
 @using ApplicationUser = global::Web.Models.Identity.ApplicationUser
 @inject SignInManager<ApplicationUser> SignInManager
 
@@ -21,22 +21,28 @@
             <div class="container-fluid">
                 <a class="navbar-brand fw-semibold" asp-area="" asp-controller="Home" asp-action="Index">Kế Toán VAS</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                        aria-expanded="false" aria-label="Mở menu điều hướng">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="mainNavbar">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Trang chủ</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Bảng điều khiển</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Accounts" asp-action="Index">Tài khoản</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="ChartOfAccounts" asp-action="Index">Hệ thống tài khoản</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Journals" asp-action="Index">Nhật ký</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="JournalEntries" asp-action="Index">Nhật ký chung</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Reports" asp-action="Index">Báo cáo</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Ledger" asp-action="Index">Sổ cái</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Reports" asp-action="Index">Báo cáo tài chính</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Audit" asp-action="Index">Nhật ký kiểm toán</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav">

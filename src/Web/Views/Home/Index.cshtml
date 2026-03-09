@@ -1,14 +1,58 @@
-@{
-    ViewData["Title"] = "Trang ch?";
+﻿@{
+    ViewData["Title"] = "Bảng điều khiển";
 }
 
 <div class="py-4">
-    <h1 class="display-5 fw-semibold mb-3">Ch�o m?ng d?n v?i h? th?ng k? to�n VAS</h1>
-    <p class="lead text-muted mb-4">Trang t?ng quan nhanh cho c�c ph�n h? ch�nh.</p>
+    <div class="mb-4">
+        <h1 class="display-6 fw-semibold mb-2">Tổng quan hệ thống kế toán VAS</h1>
+        <p class="text-muted mb-0">Theo dõi nhanh dữ liệu cốt lõi và truy cập các phân hệ chính.</p>
+    </div>
+
+    <div class="row g-3 mb-4">
+        <div class="col-12 col-md-6 col-xl-3">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h2 class="h6 text-muted mb-2">Tài khoản kế toán</h2>
+                    <p class="display-6 fw-bold mb-2">@ViewBag.TotalAccounts</p>
+                    <a class="btn btn-sm btn-outline-primary" asp-controller="ChartOfAccounts" asp-action="Index">Xem hệ thống tài khoản</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-xl-3">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h2 class="h6 text-muted mb-2">Bút toán nhật ký</h2>
+                    <p class="display-6 fw-bold mb-2">@ViewBag.TotalJournalEntries</p>
+                    <a class="btn btn-sm btn-outline-primary" asp-controller="JournalEntries" asp-action="Index">Xem nhật ký chung</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-xl-3">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h2 class="h6 text-muted mb-2">Dòng hạch toán</h2>
+                    <p class="display-6 fw-bold mb-2">@ViewBag.TotalTransactionEntries</p>
+                    <a class="btn btn-sm btn-outline-primary" asp-controller="Ledger" asp-action="Index">Xem sổ cái</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-xl-3">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h2 class="h6 text-muted mb-2">Nhật ký kiểm toán</h2>
+                    <p class="display-6 fw-bold mb-2">@ViewBag.TotalAuditLogs</p>
+                    <a class="btn btn-sm btn-outline-primary" asp-controller="Audit" asp-action="Index">Xem nhật ký kiểm toán</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="d-flex flex-wrap gap-2">
-        <a class="btn btn-primary" asp-controller="Accounts" asp-action="Index">Qu?n l� t�i kho?n</a>
-        <a class="btn btn-outline-primary" asp-controller="Journals" asp-action="Index">Nh?t k� chung</a>
-        <a class="btn btn-outline-secondary" asp-controller="Reports" asp-action="Index">Xem b�o c�o</a>
+        <a class="btn btn-primary" asp-controller="Reports" asp-action="Index">Mở báo cáo tài chính</a>
+        <a class="btn btn-outline-secondary" asp-controller="Reports" asp-action="BalanceSheet">Bảng cân đối kế toán</a>
+        <a class="btn btn-outline-secondary" asp-controller="Reports" asp-action="CashFlow">Báo cáo lưu chuyển tiền tệ</a>
     </div>
 </div>
