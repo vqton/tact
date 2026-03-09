@@ -36,6 +36,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/acct/src/Web/Views/Audit/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXVkaXRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/acct/src/Web/Views/Audit/_AuditTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXVkaXRcX0F1ZGl0VGFibGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/acct/src/Web/Views/ChartOfAccounts/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhcnRPZkFjY291bnRzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -58,6 +66,38 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/acct/src/Web/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/acct/src/Web/Views/JournalEntries/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm91cm5hbEVudHJpZXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/acct/src/Web/Views/Ledger/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGVkZ2VyXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/acct/src/Web/Views/Ledger/TrialBalance.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGVkZ2VyXFRyaWFsQmFsYW5jZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/acct/src/Web/Views/Ledger/_LedgerTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGVkZ2VyXF9MZWRnZXJUYWJsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/acct/src/Web/Views/Reports/BalanceSheet.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xCYWxhbmNlU2hlZXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/acct/src/Web/Views/Reports/CashFlow.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xDYXNoRmxvdy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/acct/src/Web/Views/Reports/IncomeStatement.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xJbmNvbWVTdGF0ZW1lbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/acct/src/Web/Views/Reports/_ReportPreview.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwb3J0c1xfUmVwb3J0UHJldmlldy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/acct/src/Web/Views/Shared/Error.cshtml]

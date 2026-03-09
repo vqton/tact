@@ -1,0 +1,49 @@
+@model Web.Models.Reports.FinancialReportVm
+@{
+    ViewData["Title"] = "Báo cáo tài chính";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h3 mb-0">Báo cáo tài chính</h1>
+</div>
+
+<div class="card mb-3">
+    <div class="card-body">
+        <h2 class="h5 mb-3">@Model.Title</h2>
+        <form method="get"
+              class="row g-3"
+              hx-get="@Url.Action("CashFlow", "Reports")"
+              hx-target="#report-preview"
+              hx-swap="innerHTML">
+            <div class="col-12 col-md-4">
+                <label class="form-label" for="fromDate">Từ ngày</label>
+                <input id="fromDate"
+                       name="fromDate"
+                       type="date"
+                       class="form-control"
+                       value="@Model.FromDate?.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-12 col-md-4">
+                <label class="form-label" for="toDate">Đến ngày</label>
+                <input id="toDate"
+                       name="toDate"
+                       type="date"
+                       class="form-control"
+                       value="@Model.ToDate?.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-12 col-md-2 d-grid">
+                <label class="form-label d-none d-md-block">&nbsp;</label>
+                <button type="submit" class="btn btn-primary">Xem báo cáo</button>
+            </div>
+        </form>
+        <form method="get" class="mt-3">
+            <input type="hidden" name="fromDate" value="@Model.FromDate?.ToString("yyyy-MM-dd")" />
+            <input type="hidden" name="toDate" value="@Model.ToDate?.ToString("yyyy-MM-dd")" />
+            <button type="submit" class="btn btn-outline-secondary" name="format" value="pdf">Xuất PDF</button>
+        </form>
+    </div>
+</div>
+
+<div id="report-preview">
+    @await Html.PartialAsync("_ReportPreview", Model)
+</div>

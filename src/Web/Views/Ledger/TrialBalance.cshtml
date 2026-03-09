@@ -1,0 +1,65 @@
+@model Web.Models.Ledger.TrialBalanceVm
+@{
+    ViewData["Title"] = "Bảng cân đối số phát sinh";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h3 mb-0">Bảng cân đối số phát sinh</h1>
+    <a class="btn btn-outline-secondary" asp-controller="Ledger" asp-action="Index">
+        Sổ cái
+    </a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+        <thead class="table-light">
+            <tr>
+                <th style="width: 140px;">Mã TK</th>
+                <th>Tên tài khoản</th>
+                <th style="width: 180px;" class="text-end">Tổng Nợ (VND)</th>
+                <th style="width: 180px;" class="text-end">Tổng Có (VND)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Groups.Count == 0)
+            {
+                <tr>
+                    <td colspan="4" class="text-center text-muted py-4">Không có dữ liệu phát sinh.</td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var group in Model.Groups)
+                {
+                    <tr class="table-secondary">
+                        <th colspan="4">@group.GroupName</th>
+                    </tr>
+                    @foreach (var row in group.Rows)
+                    {
+                        <tr>
+                            <td>@row.AccountCode</td>
+                            <td>@row.AccountName</td>
+                            <td class="text-end">@row.TotalDebit.ToString("N0")</td>
+                            <td class="text-end">@row.TotalCredit.ToString("N0")</td>
+                        </tr>
+                    }
+                    <tr class="table-light">
+                        <th colspan="2" class="text-end">Cộng nhóm @group.GroupName</th>
+                        <th class="text-end">@group.SubtotalDebit.ToString("N0")</th>
+                        <th class="text-end">@group.SubtotalCredit.ToString("N0")</th>
+                    </tr>
+                }
+            }
+        </tbody>
+        @if (Model.Groups.Count > 0)
+        {
+            <tfoot class="table-dark">
+                <tr>
+                    <th colspan="2" class="text-end">Tổng cộng</th>
+                    <th class="text-end">@Model.TotalDebit.ToString("N0")</th>
+                    <th class="text-end">@Model.TotalCredit.ToString("N0")</th>
+                </tr>
+            </tfoot>
+        }
+    </table>
+</div>

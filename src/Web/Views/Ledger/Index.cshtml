@@ -1,0 +1,50 @@
+@model Web.Models.Ledger.LedgerFilterVm
+@{
+    ViewData["Title"] = "Sổ cái";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h3 mb-0">Sổ cái</h1>
+    <a class="btn btn-outline-secondary" asp-controller="Ledger" asp-action="TrialBalance">
+        Bảng cân đối số phát sinh
+    </a>
+</div>
+
+<form method="get"
+      class="row g-3 mb-3"
+      hx-get="@Url.Action("Index", "Ledger")"
+      hx-target="#ledger-table-container"
+      hx-swap="innerHTML">
+    <div class="col-12 col-md-4">
+        <label class="form-label" for="accountId">Tài khoản</label>
+        <select id="accountId"
+                name="accountId"
+                class="form-select"
+                asp-items="Model.AccountOptions">
+        </select>
+    </div>
+    <div class="col-6 col-md-3">
+        <label class="form-label" for="fromDate">Từ ngày</label>
+        <input id="fromDate"
+               name="fromDate"
+               type="date"
+               class="form-control"
+               value="@Model.FromDate?.ToString("yyyy-MM-dd")" />
+    </div>
+    <div class="col-6 col-md-3">
+        <label class="form-label" for="toDate">Đến ngày</label>
+        <input id="toDate"
+               name="toDate"
+               type="date"
+               class="form-control"
+               value="@Model.ToDate?.ToString("yyyy-MM-dd")" />
+    </div>
+    <div class="col-12 col-md-2 d-grid">
+        <label class="form-label d-none d-md-block">&nbsp;</label>
+        <button type="submit" class="btn btn-primary">Lọc</button>
+    </div>
+</form>
+
+<div id="ledger-table-container">
+    @await Html.PartialAsync("_LedgerTable", Model)
+</div>

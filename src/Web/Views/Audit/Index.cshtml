@@ -1,0 +1,50 @@
+﻿@model Web.Controllers.AuditIndexVm
+@{
+    ViewData["Title"] = "Nhật ký kiểm tra";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h3 mb-0">Nhật ký kiểm tra</h1>
+</div>
+
+<form method="get"
+      class="row g-3 mb-3"
+      hx-get="@Url.Action("Index", "Audit")"
+      hx-target="#audit-table-container"
+      hx-swap="innerHTML">
+    <div class="col-12 col-md-3">
+        <label class="form-label" for="userId">Người dùng</label>
+        <input id="userId" name="userId" type="text" class="form-control" value="@Model.UserId" />
+    </div>
+    <div class="col-12 col-md-3">
+        <label class="form-label" for="entityType">Đối tượng</label>
+        <input id="entityType" name="entityType" type="text" class="form-control" value="@Model.EntityType" />
+    </div>
+    <div class="col-12 col-md-2">
+        <label class="form-label" for="action">Hành động</label>
+        <input id="action" name="action" type="text" class="form-control" value="@Model.Action" />
+    </div>
+    <div class="col-6 col-md-2">
+        <label class="form-label" for="fromDate">Từ ngày</label>
+        <input id="fromDate"
+               name="fromDate"
+               type="date"
+               class="form-control"
+               value="@Model.FromDate?.ToString("yyyy-MM-dd")" />
+    </div>
+    <div class="col-6 col-md-2">
+        <label class="form-label" for="toDate">Đến ngày</label>
+        <input id="toDate"
+               name="toDate"
+               type="date"
+               class="form-control"
+               value="@Model.ToDate?.ToString("yyyy-MM-dd")" />
+    </div>
+    <div class="col-12 d-grid d-md-flex justify-content-md-end">
+        <button type="submit" class="btn btn-primary">Lọc</button>
+    </div>
+</form>
+
+<div id="audit-table-container">
+    @await Html.PartialAsync("_AuditTable", Model)
+</div>

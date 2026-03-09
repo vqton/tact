@@ -1,0 +1,167 @@
+@model Web.Models.JournalEntries.JournalEntryCreateVm
+@using Microsoft.AspNetCore.Mvc.Rendering
+@using System.Text.Json
+@{
+    ViewData["Title"] = "Tạo chứng từ";
+    var accountOptions = ViewBag.AccountOptions as List<SelectListItem> ?? new List<SelectListItem>();
+    var accountJson = JsonSerializer.Serialize(accountOptions.Select(x => new { value = x.Value, text = x.Text }));
+}
+
+<div id="create-form-wrapper" class="card"
+     x-data="journalEntryForm(@Html.Raw(accountJson), @Html.Raw(JsonSerializer.Serialize(Model.Lines)))">
+    <div class="card-body">
+        <h1 class="h4 mb-3">Chứng từ</h1>
+
+        <form asp-action="Create"
+              asp-controller="JournalEntries"
+              method="post"
+              hx-post="@Url.Action("Create", "JournalEntries")"
+              hx-target="#create-form-wrapper"
+              hx-swap="outerHTML"
+              hx-indicator="#saving-indicator">
+            @Html.AntiForgeryToken()
+
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="row g-3 mb-3">
+                <div class="col-md-4">
+                    <label asp-for="VoucherRef" class="form-label">Chứng từ</label>
+                    <input asp-for="VoucherRef" class="form-control" />
+                    <span asp-validation-for="VoucherRef" class="text-danger"></span>
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="Date" class="form-label">Ngày</label>
+                    <input asp-for="Date" type="date" class="form-control" />
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="Description" class="form-label">Diễn giải</label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-bordered align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Tai khoan</th>
+                            <th class="text-end">Nợ</th>
+                            <th class="text-end">Có</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template x-for="(line, index) in lines" :key="index">
+                            <tr>
+                                <td>
+                                    <select class="form-select"
+                                            :name="`Lines[${index}].AccountId`"
+                                            x-model="line.accountId">
+                                        <option value="">-- Chon tai khoan --</option>
+                                        <template x-for="account in accounts" :key="account.value">
+                                            <option :value="account.value" x-text="account.text"></option>
+                                        </template>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="number"
+                                           min="0"
+                                           step="0.01"
+                                           class="form-control text-end"
+                                           :name="`Lines[${index}].Debit`"
+                                           x-model.number="line.debit" />
+                                </td>
+                                <td>
+                                    <input type="number"
+                                           min="0"
+                                           step="0.01"
+                                           class="form-control text-end"
+                                           :name="`Lines[${index}].Credit`"
+                                           x-model.number="line.credit" />
+                                </td>
+                                <td class="text-center">
+                                    <button type="button" class="btn btn-sm btn-outline-danger" x-on:click="removeLine(index)">
+                                        Xoa
+                                    </button>
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th class="text-end">Tong</th>
+                            <th class="text-end" x-text="formatCurrency(totalDebit)"></th>
+                            <th class="text-end" x-text="formatCurrency(totalCredit)"></th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <span asp-validation-for="Lines" class="text-danger d-block mb-2"></span>
+
+            <div class="d-flex flex-wrap gap-2 align-items-center">
+                <button type="button"
+                        class="btn btn-outline-secondary"
+                        hx-trigger="click"
+                        hx-on:click="addLine()">
+                    Them dong
+                </button>
+                <button type="submit" class="btn btn-primary" :disabled="!isBalanced || !hasValidLines">
+                    Luu
+                </button>
+                <span id="saving-indicator" class="htmx-indicator text-muted">Dang luu...</span>
+                <span class="text-danger" x-show="!isBalanced">Tong No va Tong Co phai bang nhau.</span>
+            </div>
+        </form>
+    </div>
+</div>
+
+<partial name="_ValidationScriptsPartial" />
+
+@section Scripts {
+    <script>
+        function journalEntryForm(accounts, initialLines) {
+            const normalizedLines = (initialLines || []).map((x) => ({
+                accountId: x.accountId ? String(x.accountId) : "",
+                debit: Number(x.debit || 0),
+                credit: Number(x.credit || 0)
+            }));
+
+            return {
+                accounts: accounts || [],
+                lines: normalizedLines.length > 0 ? normalizedLines : [
+                    { accountId: "", debit: 0, credit: 0 },
+                    { accountId: "", debit: 0, credit: 0 }
+                ],
+                get totalDebit() {
+                    return this.lines.reduce((sum, line) => sum + Number(line.debit || 0), 0);
+                },
+                get totalCredit() {
+                    return this.lines.reduce((sum, line) => sum + Number(line.credit || 0), 0);
+                },
+                get isBalanced() {
+                    return this.totalDebit === this.totalCredit;
+                },
+                get hasValidLines() {
+                    const nonZero = this.lines.filter((x) => Number(x.debit || 0) > 0 || Number(x.credit || 0) > 0);
+                    return nonZero.length >= 2;
+                },
+                addLine() {
+                    this.lines.push({ accountId: "", debit: 0, credit: 0 });
+                },
+                removeLine(index) {
+                    if (this.lines.length <= 2) {
+                        return;
+                    }
+
+                    this.lines.splice(index, 1);
+                },
+                formatCurrency(value) {
+                    return new Intl.NumberFormat("vi-VN", { maximumFractionDigits: 2 }).format(value || 0);
+                }
+            };
+        }
+    </script>
+}
