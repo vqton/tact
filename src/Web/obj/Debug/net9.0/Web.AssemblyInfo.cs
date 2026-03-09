@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyDescriptionAttribute(("ASP.NET Core MVC accounting application compliant with Circular 99/2025/TT-BTC (V" +
     "ietnamese VAS)"))]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1cb204820fbd6521badfe06694bfb5272d843b74")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cac93c95ba1883007dfc4bb3d971a1eb9f5be988")]
 [assembly: System.Reflection.AssemblyProductAttribute("Accounting WebApp (VAS-Compliant)")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

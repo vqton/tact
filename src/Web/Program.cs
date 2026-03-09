@@ -140,3 +140,5 @@ static void ConfigureDatabaseProvider(DbContextOptionsBuilder options, string pr
                 $"Unsupported database provider '{provider}'. Supported values: SQLite, SqlServerExpress, SqlServer.");
     }
 }
+
+public partial class Program;
