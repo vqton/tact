@@ -2,7 +2,7 @@ using AccountingVAS.Web.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
-using Web.Models.Identity;
+using ApplicationUser = global::Web.Models.Identity.ApplicationUser;
 
 var builder = WebApplication.CreateBuilder(args);
 

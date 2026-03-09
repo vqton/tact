@@ -1,7 +1,7 @@
 namespace AccountingVAS.Web.Data;
 
 using Microsoft.AspNetCore.Identity;
-using Web.Models.Identity;
+using ApplicationUser = global::Web.Models.Identity.ApplicationUser;
 
 public static class IdentitySeeder
 {

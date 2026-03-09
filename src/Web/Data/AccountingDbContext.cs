@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using AccountingVAS.Web.Data.Configurations;
 using AccountingVAS.Web.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Web.Models.Identity;
+using ApplicationUser = global::Web.Models.Identity.ApplicationUser;
 
 /// <summary>
 /// Entity Framework Core DbContext for the accounting application.

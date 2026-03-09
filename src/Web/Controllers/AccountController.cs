@@ -3,8 +3,9 @@ namespace Web.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Web.Models.Account;
-using Web.Models.Identity;
+using LoginViewModel = global::Web.Models.Account.LoginViewModel;
+using RegisterViewModel = global::Web.Models.Account.RegisterViewModel;
+using ApplicationUser = global::Web.Models.Identity.ApplicationUser;
 
 [AllowAnonymous]
 public class AccountController : Controller
