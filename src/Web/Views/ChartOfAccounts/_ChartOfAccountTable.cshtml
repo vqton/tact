@@ -1,0 +1,62 @@
+@model IReadOnlyList<AccountingVAS.Web.Models.Account>
+
+<div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+        <thead class="table-light">
+            <tr>
+                <th style="width: 140px;">Ma TK</th>
+                <th>Ten TK</th>
+                <th style="width: 220px;">Loai TK</th>
+                <th style="width: 180px;" class="text-end">Thao tac</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count == 0)
+            {
+                <tr>
+                    <td colspan="4" class="text-center text-muted py-4">Chua co tai khoan nao.</td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var account in Model)
+                {
+                    var indent = Math.Max(account.Level - 1, 0) * 20;
+                    <tr>
+                        <td>@account.Code</td>
+                        <td>
+                            <span style="padding-left:@(indent)px; display:inline-block;">
+                                @account.Name
+                            </span>
+                        </td>
+                        <td>@account.Type</td>
+                        <td class="text-end">
+                            <button type="button"
+                                    class="btn btn-sm btn-outline-primary"
+                                    hx-get="@Url.Action("Edit", "ChartOfAccounts", new { id = account.Id })"
+                                    hx-target="#account-form-container"
+                                    hx-swap="innerHTML">
+                                Sua
+                            </button>
+                            <form asp-action="Delete"
+                                  asp-controller="ChartOfAccounts"
+                                  asp-route-id="@account.Id"
+                                  method="post"
+                                  class="d-inline">
+                                @Html.AntiForgeryToken()
+                                <button type="submit"
+                                        class="btn btn-sm btn-outline-danger"
+                                        hx-post="@Url.Action("Delete", "ChartOfAccounts", new { id = account.Id })"
+                                        hx-target="#account-list"
+                                        hx-swap="innerHTML"
+                                        hx-confirm="Ban co chac chan muon xoa tai khoan nay?">
+                                    Xoa
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

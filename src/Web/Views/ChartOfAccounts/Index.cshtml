@@ -1,0 +1,24 @@
+@model IReadOnlyList<AccountingVAS.Web.Models.Account>
+@{
+    ViewData["Title"] = "Danh sach tai khoan";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h3 mb-0">Danh sach tai khoan</h1>
+    <button type="button"
+            class="btn btn-primary"
+            hx-get="@Url.Action("Create", "ChartOfAccounts")"
+            hx-target="#account-form-container"
+            hx-swap="innerHTML">
+        Them tai khoan
+    </button>
+</div>
+
+<div id="account-form-container"
+     class="mb-3"
+     hx-on:coa-form-clear="this.innerHTML = ''">
+</div>
+
+<div id="account-list">
+    @await Html.PartialAsync("_ChartOfAccountTable", Model)
+</div>

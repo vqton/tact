@@ -2,6 +2,8 @@ using AccountingVAS.Web.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using Serilog.Context;
+using Serilog.Events;
 using ApplicationUser = global::Web.Models.Identity.ApplicationUser;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,10 +11,26 @@ var builder = WebApplication.CreateBuilder(args);
 // Configure Serilog
 builder.Host.UseSerilog((context, configuration) =>
 {
+    var seqUrl = context.Configuration["Serilog:Seq:ServerUrl"];
+    var minimumLevel = context.HostingEnvironment.IsDevelopment() ? LogEventLevel.Debug : LogEventLevel.Information;
+
     configuration
-        .MinimumLevel.Information()
+        .MinimumLevel.Is(minimumLevel)
+        .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+        .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
         .ReadFrom.Configuration(context.Configuration)
-        .Enrich.FromLogContext();
+        .Enrich.FromLogContext()
+        .WriteTo.Console()
+        .WriteTo.File(
+            path: "logs/log-.txt",
+            rollingInterval: RollingInterval.Day,
+            retainedFileCountLimit: 30,
+            shared: true);
+
+    if (!string.IsNullOrWhiteSpace(seqUrl))
+    {
+        configuration.WriteTo.Seq(seqUrl);
+    }
 });
 
 // Add services to the container.
@@ -60,8 +78,20 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
+app.UseSerilogRequestLogging();
 
 app.UseAuthentication();
+app.Use(async (httpContext, next) =>
+{
+    var userId = httpContext.User?.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+
+    using (LogContext.PushProperty("RequestPath", httpContext.Request.Path.Value ?? string.Empty))
+    using (LogContext.PushProperty("Method", httpContext.Request.Method))
+    using (LogContext.PushProperty("UserId", userId ?? "Anonymous"))
+    {
+        await next();
+    }
+});
 app.UseAuthorization();
 
 app.MapStaticAssets();

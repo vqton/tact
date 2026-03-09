@@ -125,3 +125,5 @@ build/
 coverage/
 *.coverage
 *.coveragexml
+
+**/obj/*

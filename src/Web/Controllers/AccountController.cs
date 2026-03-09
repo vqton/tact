@@ -3,6 +3,7 @@ namespace Web.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using LoginViewModel = global::Web.Models.Account.LoginViewModel;
 using RegisterViewModel = global::Web.Models.Account.RegisterViewModel;
 using ApplicationUser = global::Web.Models.Identity.ApplicationUser;
@@ -12,13 +13,16 @@ public class AccountController : Controller
 {
     private readonly SignInManager<ApplicationUser> _signInManager;
     private readonly UserManager<ApplicationUser> _userManager;
+    private readonly ILogger<AccountController> _logger;
 
     public AccountController(
         SignInManager<ApplicationUser> signInManager,
-        UserManager<ApplicationUser> userManager)
+        UserManager<ApplicationUser> userManager,
+        ILogger<AccountController> logger)
     {
         _signInManager = signInManager;
         _userManager = userManager;
+        _logger = logger;
     }
 
     [HttpGet]
@@ -47,15 +51,27 @@ public class AccountController : Controller
 
         if (result.Succeeded)
         {
+            _logger.LogInformation(
+                "Login succeeded for {Email}. ReturnUrl={ReturnUrl}",
+                model.Email,
+                returnUrl);
             return RedirectToLocal(returnUrl);
         }
 
         if (result.IsLockedOut)
         {
+            _logger.LogWarning(
+                "Login failed because account is locked out for {Email}. ReturnUrl={ReturnUrl}",
+                model.Email,
+                returnUrl);
             ModelState.AddModelError(string.Empty, "Tai khoan tam thoi bi khoa. Vui long thu lai sau.");
             return View(model);
         }
 
+        _logger.LogWarning(
+            "Login failed due to invalid credentials for {Email}. ReturnUrl={ReturnUrl}",
+            model.Email,
+            returnUrl);
         ModelState.AddModelError(string.Empty, "Dang nhap that bai. Vui long kiem tra email va mat khau.");
         return View(model);
     }

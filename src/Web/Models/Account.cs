@@ -147,6 +147,28 @@ public class Account
     }
 
     /// <summary>
+    /// Updates editable account fields for Chart of Accounts maintenance.
+    /// </summary>
+    public void UpdateDetails(string code, string name, AccountType type, int? parentId, int level)
+    {
+        if (string.IsNullOrWhiteSpace(code))
+            throw new ArgumentException("Account code is required", nameof(code));
+
+        if (string.IsNullOrWhiteSpace(name))
+            throw new ArgumentException("Account name is required", nameof(name));
+
+        if (level < 1 || level > 5)
+            throw new ArgumentException("Account level must be between 1 and 5", nameof(level));
+
+        Code = code.Trim();
+        Name = name.Trim();
+        Type = type;
+        ParentId = parentId;
+        Level = level;
+        ModifiedAt = DateTime.UtcNow;
+    }
+
+    /// <summary>
     /// Adjusts balance when a TransactionEntry is posted/reversed.
     /// Internal method called by JournalEntry posting logic.
     /// </summary>

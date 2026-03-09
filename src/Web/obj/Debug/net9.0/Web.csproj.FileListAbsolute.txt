@@ -298,3 +298,4 @@ D:\acct\src\Web\obj\Debug\net9.0\Web.pdb
 D:\acct\src\Web\obj\Debug\net9.0\Web.genruntimeconfig.cache
 D:\acct\src\Web\obj\Debug\net9.0\ref\Web.dll
 D:\acct\src\Web\obj\Debug\net9.0\Web.sourcelink.json
+D:\acct\src\Web\bin\Debug\net9.0\Serilog.Sinks.Seq.dll

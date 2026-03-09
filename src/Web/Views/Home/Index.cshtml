@@ -1,8 +1,14 @@
-ï»¿@{
-    ViewData["Title"] = "Home Page";
+@{
+    ViewData["Title"] = "Trang ch?";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="py-4">
+    <h1 class="display-5 fw-semibold mb-3">Chào m?ng d?n v?i h? th?ng k? toán VAS</h1>
+    <p class="lead text-muted mb-4">Trang t?ng quan nhanh cho các phân h? chính.</p>
+
+    <div class="d-flex flex-wrap gap-2">
+        <a class="btn btn-primary" asp-controller="Accounts" asp-action="Index">Qu?n lý tài kho?n</a>
+        <a class="btn btn-outline-primary" asp-controller="Journals" asp-action="Index">Nh?t ký chung</a>
+        <a class="btn btn-outline-secondary" asp-controller="Reports" asp-action="Index">Xem báo cáo</a>
+    </div>
 </div>
