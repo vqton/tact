@@ -1,0 +1,1 @@
+2026-03-09 14:14:58.548 +07:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development. { EventId: { Id: 10400, Name: "Microsoft.EntityFrameworkCore.Infrastructure.SensitiveDataLoggingEnabledWarning" }, SourceContext: "Microsoft.EntityFrameworkCore.Model.Validation" }

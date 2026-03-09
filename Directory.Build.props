@@ -1,0 +1,39 @@
+<Project>
+  <!-- Solution-level properties -->
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <!-- Common metadata -->
+    <Company>Accounting VAS</Company>
+    <Product>Accounting WebApp (VAS-Compliant)</Product>
+    <Description>ASP.NET Core MVC accounting application compliant with Circular 99/2025/TT-BTC (Vietnamese VAS)</Description>
+    <Version>1.0.0</Version>
+    <Authors>Development Team</Authors>
+    <License>MIT</License>
+
+    <!-- Treat warnings as errors (optional - uncomment to enforce) -->
+    <!-- <TreatWarningsAsErrors>true</TreatWarningsAsErrors> -->
+    <WarningLevel>4</WarningLevel>
+
+    <!-- Code analysis -->
+    <AnalysisLevel>latest</AnalysisLevel>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <!-- Suppress specific warnings if needed -->
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);CA1416;CA1707;CA1711</NoWarn>
+  </PropertyGroup>
+
+  <!-- NuGet package defaults -->
+  <ItemGroup>
+    <PackageReference Update="Microsoft.EntityFrameworkCore" Version="9.0.1" />
+    <PackageReference Update="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.1" />
+    <PackageReference Update="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.1" />
+    <PackageReference Update="Microsoft.EntityFrameworkCore.Tools" Version="9.0.1" />
+  </ItemGroup>
+</Project>
